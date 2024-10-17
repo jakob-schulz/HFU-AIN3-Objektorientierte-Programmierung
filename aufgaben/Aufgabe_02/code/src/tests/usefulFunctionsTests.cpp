@@ -1,7 +1,4 @@
 #include <cassert>
-
-#include "../main/position.hpp"
-
 #include "../main/usefulFunctions.hpp"
 
 void shouldTestToInt()
@@ -36,17 +33,10 @@ void shouldTestDecode(){
     }
 }
 
-void shouldTestPosition(){
-    oopTutorium::Position mordor;
-    mordor.set("Mordor", 1, 2);
-    assert(mordor.getX() == 1); 
-}
-
 int main()
 {
-    std::cout << "starting..." << std::endl;
+    std::cout << "starting useful functions tests..." << std::endl;
     shouldTestToInt();
-    shouldTestDecode();
     shouldTestDecode();
     std::cout << "...finished" << std::endl;
     return 0;
