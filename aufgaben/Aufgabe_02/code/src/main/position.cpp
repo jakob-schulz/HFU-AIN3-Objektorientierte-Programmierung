@@ -1,20 +1,26 @@
-#include"position.hpp"
+#include "position.hpp"
 
-void oopTutorium::Position::set(const std::string &name, int x, int y)
+namespace oopTutorium
 {
-    this->name = name;
-    this->x = x;
-    this->y = y;
-}
+    void Position::set(const std::string &name, int x, int y)
+    {
+        this->name = name;
+        this->x = x;
+        this->y = y;
+    }
 
-const std::string &oopTutorium::Position::getName() const{
-    return name;
-}
+    const std::string &Position::getName() const
+    {
+        return name;
+    }
 
-int oopTutorium::Position::getX() const{
-    return x;
-}
+    int Position::getX() const
+    {
+        return x;
+    }
 
-int oopTutorium::Position::getY() const{
-    return y;
+    int Position::getY() const
+    {
+        return y;
+    }
 }
