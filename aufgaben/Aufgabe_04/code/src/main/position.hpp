@@ -14,6 +14,7 @@ namespace oopTutorium
         const std::string &getName() const;
         int getX() const;
         int getY() const;
-        int compare(const Position &position) const;
+        int compare(const Position &position);
+        
     };
 }

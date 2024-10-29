@@ -1,3 +1,4 @@
 /notizen
 *.exe
 *.synctex.gz
+*build

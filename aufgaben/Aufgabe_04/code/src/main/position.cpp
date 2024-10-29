@@ -22,7 +22,7 @@ namespace oopTutorium
         return y;
     }
 
-    int Position::compare(const Position &position) const
+    int Position::compare(const Position &position)
     {
         if (this->name.compare(position.getName()) < 0)
         {
