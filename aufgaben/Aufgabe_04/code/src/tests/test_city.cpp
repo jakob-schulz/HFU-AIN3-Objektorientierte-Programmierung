@@ -80,4 +80,5 @@ int main(){
     std::cout<<"starting test_city...."<<std::endl;
     testCity();
     std::cout<<"...finished"<<std::endl;
+    return 0;
 }

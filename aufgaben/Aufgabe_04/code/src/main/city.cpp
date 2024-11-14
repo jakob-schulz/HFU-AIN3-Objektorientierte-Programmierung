@@ -2,7 +2,7 @@
 
 namespace oopTutorium
 {
-    std::string *makeSightsArray(const std::string sights[], int sightsLength)
+    std::string *City::makeSightsArray(const std::string sights[], int sightsLength)
     {
         std::string *storedSights = new std::string[sightsLength];
         for (int sight = 0; sight < sightsLength; sight++)
@@ -30,6 +30,7 @@ namespace oopTutorium
     }
     
     const std::string &City::getPOI(int i) const{
+        //a separate method should be written here to avoid redundancy
         if(i< 0 || i >= size){
             throw std::invalid_argument("index out of array range");
         }
@@ -37,6 +38,7 @@ namespace oopTutorium
     }
 
     void City::setPOI(int i, const std::string &name){
+        //a separate method should be written here to avoid redundancy
         if(i< 0 || i >= size){
             throw std::invalid_argument("index out of array range");
         }
