@@ -27,9 +27,9 @@ namespace oopTutorium
     int City::numberOfSamePois(const std::string &namePOI) const
     {
         int result = 0;
-        for (std::string *poi = pois; poi < pois + size; poi++)
+        for (int poi = 0; poi < size; poi++)
         {
-            if (*poi == namePOI)
+            if (pois[poi] == namePOI)
             {
                 result++;
             }
@@ -45,14 +45,8 @@ namespace oopTutorium
     {
     }
 
-    City::City(const City &city) : City(city.position, city.pois, city.size)
+    City::City(const City &city) : City(city.position, city.pois.get(), city.size) //get-Method: returns a pointer to the managed object
     {
-    }
-
-    City::~City()
-    {
-        delete[] pois;
-        pois = nullptr;
     }
 
     const std::string &City::getName() const
@@ -96,9 +90,7 @@ namespace oopTutorium
         }
         updatedPois[size] = namePOI;
         size = size + 1;
-        delete[] pois;
-        pois = nullptr;
-        pois = updatedPois;
+        pois.reset(updatedPois); //replaces the old unique_ptr with a new one
     }
 
     bool City::remove(const std::string &namePOI)
@@ -122,11 +114,44 @@ namespace oopTutorium
                 updatedPois[updatedPoi] = pois[poi];
                 poi++;
             }
-            delete[] pois;
-            pois = nullptr;
-            pois = updatedPois;
+            pois.reset(updatedPois); //replaces the old unique_ptr with a new one
             return true;
         }
         return false;
+    }
+
+    std::string &City::operator[](int index)
+    {
+        this->checkIndexOutOfBounds(index);
+        return pois[index];
+    }
+
+    const std::string &City::operator[](int index) const
+    {
+        return getPOI(index);
+    }
+
+    City &City::operator=(const City &other)
+    {
+        if(this == &other)
+        {
+            return *this;
+        }
+        this->position = other.position;
+        this->size = other.size;
+        std::string *newPois = makePoisArray(other.pois.get(), other.size); //get-Method: returns a pointer to the managed object
+        pois.reset(newPois);
+        return *this;
+    }
+
+    std::ostream &operator<<(std::ostream &out, const City &p)
+    {
+        out << p.position << "\n";
+        for(int poi = 0; poi < p.size-1; poi++){ //until -1 in order to avoid /n for the last element int the array
+            out << p[poi];
+            out << "\n";
+        }
+        out << p[p.size-1];
+        return out;
     }
 }

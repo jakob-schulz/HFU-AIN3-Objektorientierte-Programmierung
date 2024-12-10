@@ -129,4 +129,43 @@ namespace oopTutorium
         }
         return false;
     }
+
+    std::string &City::operator[](int index)
+    {
+        this->checkIndexOutOfBounds(index);
+        return pois[index];
+    }
+
+    const std::string &City::operator[](int index) const
+    {
+        return getPOI(index);
+    }
+
+    City &City::operator=(const City &other)
+    {
+        if(this == &other)
+        {
+            return *this;
+        }
+        this->position = other.position;
+        this->size = other.size;
+        std::string *newPois = makePoisArray(other.pois, other.size);
+        delete[]pois;
+        pois = newPois;
+        return *this;
+    }
+
+    std::ostream &operator<<(std::ostream &out, const City &p)
+    {
+        out << p.position << "\n";
+        for (std::string *poi = p.pois; poi < p.pois + p.size; poi++)
+        {
+            out << *poi;
+            if (poi != p.pois + p.size - 1) //in order to avoid /n in for the last element in the array
+            {
+                out << "\n";
+            }
+        }
+        return out;
+    }
 }

@@ -25,5 +25,6 @@ namespace oopTutorium
         int getNumberOfPOIs();
         void add(const std::string &namePOI);
         bool remove(const std::string &namePOI);
+        friend std::ostream &operator<<(std::ostream &out, const City &p);
     };
 }

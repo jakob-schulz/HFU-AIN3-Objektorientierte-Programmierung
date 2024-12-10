@@ -129,4 +129,17 @@ namespace oopTutorium
         }
         return false;
     }
+    std::ostream &operator<<(std::ostream &out, const City &p)
+    {
+        out << p.position << "\n";
+        for (std::string *poi = p.pois; poi < p.pois + p.size; poi++)
+        {
+            out << *poi;
+            if (poi != p.pois + p.size - 1) //in order to avoid /n in for the last element in the array
+            {
+                out << "\n";
+            }
+        }
+        return out;
+    }
 }
