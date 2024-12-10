@@ -8,12 +8,12 @@ namespace oopTutorium
         {
             throw std::invalid_argument("an array length is passed but no array");
         }
-        std::string *storedPois = new std::string[poisLength];
+        std::unique_ptr<std::string[]> storedPois = std::make_unique<std::string[]>(poisLength);
         for (int sight = 0; sight < poisLength; sight++)
         {
             storedPois[sight] = pois[sight];
         }
-        return storedPois;
+        return storedPois.release(); //returns a pointer to the managed object and releases the ownership
     }
 
     void City::checkIndexOutOfBounds(int i) const
