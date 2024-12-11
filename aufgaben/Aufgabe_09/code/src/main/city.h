@@ -9,7 +9,7 @@ namespace oopTutorium
         Position position;
         std::unique_ptr<std::string[]> pois;
         int size;
-        static std::string *makePoisArray(const std::string *pois, int poisLength);
+        static std::unique_ptr<std::string[]> makePoisArray(const std::string *pois, int poisLength);
         City(const Position &position, const std::string *pois, int poisLength);
         void checkIndexOutOfBounds(int i) const;
         int numberOfSamePois(const std::string &namePOI) const;

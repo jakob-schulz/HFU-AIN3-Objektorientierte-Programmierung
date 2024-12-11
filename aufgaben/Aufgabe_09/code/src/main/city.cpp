@@ -2,7 +2,7 @@
 
 namespace oopTutorium
 {
-    std::string *City::makePoisArray(const std::string *pois, int poisLength)
+    std::unique_ptr<std::string[]> City::makePoisArray(const std::string *pois, int poisLength)
     {
         if (pois == nullptr && poisLength != 0)
         {
@@ -13,7 +13,7 @@ namespace oopTutorium
         {
             storedPois[sight] = pois[sight];
         }
-        return storedPois.release(); //returns a pointer to the managed object and releases the ownership
+        return storedPois;
     }
 
     void City::checkIndexOutOfBounds(int i) const
@@ -139,8 +139,8 @@ namespace oopTutorium
         }
         this->position = other.position;
         this->size = other.size;
-        std::string *newPois = makePoisArray(other.pois.get(), other.size); //get-Method: returns a pointer to the managed object
-        pois.reset(newPois);
+        std::unique_ptr<std::string[]> newPois = makePoisArray(other.pois.get(), other.size); //get-Method: returns a pointer to the managed object
+        pois.reset(newPois.release());
         return *this;
     }
 
